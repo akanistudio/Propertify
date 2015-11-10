@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="API">
+    <meta name="author" content="Rafał Wojciechowicz">
+
+    <title>RaV Estate API</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/smoothness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/bootstrap-switch.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+<body>
+
+<div class="masthead">
+    <!-- <img class="img-responsive" data-src="holder.js/990x150/auto" alt="Generic placeholder image"> -->
+    <div id="carousel-naglowek" class="carousel slide visible-md visible-lg" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carousel-naglowek" data-slide-to="0" class=""></li>
+        <li data-target="#carousel-naglowek" data-slide-to="1" class="active"></li>
+        <li data-target="#carousel-naglowek" data-slide-to="2" class=""></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="item">
+          <img data-src="holder.js/1170x150/auto/#777:#777" alt="">
+          <div class="carousel-caption">
+            <h3>First slide label</h3>
+            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          </div>
+        </div>
+        <div class="item active">
+          <img data-src="holder.js/1170x150/auto/#666:#666" alt="">
+          <div class="carousel-caption">
+            <h3>Second slide label</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+        </div>
+        <div class="item">
+          <img data-src="holder.js/1170x150/auto/#555:#5555" alt="">
+          <div class="carousel-caption">
+            <h3>Third slide label</h3>
+            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+          </div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#carousel-example-captions" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+      <a class="right carousel-control" href="#carousel-example-captions" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </a>
+    </div>
+</div>
+<!-- /container -->
+<div id="menu-gora" class="navbar navbar-inverse  affix-top">
+    <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">RaV API</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav" id="magic-line-box">
+             <li class="active line"><a class="line-link" href="#">Przeglądarka</a></li>
+             <li class="dropdown line">
+                  <a href="#" class="dropdown-toggle line-link" data-toggle="dropdown">Dokumentacja<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Wprowadzenie</li>
+                    <li><a href="#">Jak to działa</a></li>
+                    <li><a href="#">Podstawowe zapytania</a></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Dla zaawansowanych</li>
+                    <li><a href="#">Zaawansowane zapytania</a></li>
+                    <li><a href="#">Osobny serwer z własnym API</a></li>
+                  </ul>
+                </li>
+            <li class="line"><a class="line-link" href="#kontakt">Kontakt</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+ <!-- navbar -->
+<div class="container">
+    <div class="row-fluid">
+        <div class="row">
+            <div id="wyszukiwarka" class="col-md-3 col-lg-3">
+              <div id="szukane" class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Aktualnie szukasz</h3>
+                </div>
+                <div class="panel-body">
+                  <span class="label label-primary"><span class="glyphicon glyphicon-remove"></span> Dom</span>
+                  <span class="label label-primary"><span class="glyphicon glyphicon-remove"></span> Mieszkanie</span>
+                  <span class="label label-primary"><span class="glyphicon glyphicon-remove"></span> Wynajem</span></span>
+                </div>
+              </div>
+               <div id="wyszukiwarka-box" class="panel-group" id="accordion">
+                  <div class="panel panel-primary">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">Wyszukiwarka<div class="text-right pull-right"><span class="glyphicon glyphicon-cog"></span></div></h4>
+                    </div>
+                  </div>
+                  <div class="panel panel-default pasek-out">
+                    <div class="pasek pull-left">
+                    </div>
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapseOne">
+                          Typ transakcji
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse">
+                      <div class="panel-body">
+                        Sprzedaż
+                        <div class="text-right pull-right"><input type="checkbox" name="wojewodztwo" data-size="mini" data-label-text="<span class=''></span>" data-on-text="<span class='glyphicon glyphicon-ok'></span>" data-off-text="<span class='glyphicon glyphicon-remove'></span>"></div>
+                      </div>
+                      <div class="panel-body">
+                        Wynajem
+                        <div class="text-right pull-right"><input type="checkbox" name="wojewodztwo" data-size="mini" data-label-text="<span class=''></span>" data-on-text="<span class='glyphicon glyphicon-ok'></span>" data-off-text="<span class='glyphicon glyphicon-remove'></span>"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel panel-default pasek-out">
+                    <div class="pasek pull-left">
+                    </div>
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapseTwo">
+                          Wojewodztwo
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                      <div class="panel-body">
+                        Donlnośląskie
+                        <div class="text-right pull-right"><input type="checkbox" name="wojewodztwo" data-size="mini" data-label-text="<span class=''></span>" data-on-text="<span class='glyphicon glyphicon-ok'></span>" data-off-text="<span class='glyphicon glyphicon-remove'></span>"></div>
+                      </div>
+                      <div class="panel-body">
+                        Kujawsko-pomorskie
+                        <div class="text-right pull-right"><input type="checkbox" name="wojewodztwo" data-size="mini" data-label-text="<span class=''></span>" data-on-text="<span class='glyphicon glyphicon-ok'></span>" data-off-text="<span class='glyphicon glyphicon-remove'></span>"></div>
+                      </div>
+                      <div class="panel-body">
+                        Lubelskie
+                        <div class="text-right pull-right"><input type="checkbox" name="wojewodztwo" data-size="mini" data-label-text="<span class=''></span>" data-on-text="<span class='glyphicon glyphicon-ok'></span>" data-off-text="<span class='glyphicon glyphicon-remove'></span>"></div>
+                      </div>
+                       <div class="panel-body">
+                        Lubuskie
+                        <div class="text-right pull-right"><input type="checkbox" name="wojewodztwo" data-size="mini" data-label-text="<span class=''></span>" data-on-text="<span class='glyphicon glyphicon-ok'></span>" data-off-text="<span class='glyphicon glyphicon-remove'></span>"></div>
+                      </div>
+                      <div class="panel-body">
+                        Łódzkie
+                        <div class="text-right pull-right"><input type="checkbox" name="wojewodztwo" data-size="mini" data-label-text="<span class=''></span>" data-on-text="<span class='glyphicon glyphicon-ok'></span>" data-off-text="<span class='glyphicon glyphicon-remove'></span>"></div>
+                      </div>
+                      <div class="panel-body">
+                        Małopolskie
+                        <div class="text-right pull-right"><input type="checkbox" name="wojewodztwo" data-size="mini" data-label-text="<span class=''></span>" data-on-text="<span class='glyphicon glyphicon-ok'></span>" data-off-text="<span class='glyphicon glyphicon-remove'></span>"></div>
+                      </div>
+                       <div class="panel-body">
+                        Mazowieckie
+                        <div class="text-right pull-right"><input type="checkbox" name="wojewodztwo" data-size="mini" data-label-text="<span class=''></span>" data-on-text="<span class='glyphicon glyphicon-ok'></span>" data-off-text="<span class='glyphicon glyphicon-remove'></span>"></div>
+                      </div>
+                      <div class="panel-body">
+                        Opolskie
+                        <div class="text-right pull-right"><input type="checkbox" name="wojewodztwo" data-size="mini" data-label-text="<span class=''></span>" data-on-text="<span class='glyphicon glyphicon-ok'></span>" data-off-text="<span class='glyphicon glyphicon-remove'></span>"></div>
+                      </div>
+                      <div class="panel-body">
+                        Podkaprackie
+                        <div class="text-right pull-right"><input type="checkbox" name="wojewodztwo" data-size="mini" data-label-text="<span class=''></span>" data-on-text="<span class='glyphicon glyphicon-ok'></span>" data-off-text="<span class='glyphicon glyphicon-remove'></span>"></div>
+                      </div>
+                       <div class="panel-body">
+                        Podlaskie
+                        <div class="text-right pull-right"><input type="checkbox" name="wojewodztwo" data-size="mini" data-label-text="<span class=''></span>" data-on-text="<span class='glyphicon glyphicon-ok'></span>" data-off-text="<span class='glyphicon glyphicon-remove'></span>"></div>
+                      </div>
+                      <div class="panel-body">
+                        Pomorskie
+                        <div class="text-right pull-right"><input type="checkbox" name="wojewodztwo" data-size="mini" data-label-text="<span class=''></span>" data-on-text="<span class='glyphicon glyphicon-ok'></span>" data-off-text="<span class='glyphicon glyphicon-remove'></span>"></div>
+                      </div>
+                      <div class="panel-body">
+                        Śląskie
+                        <div class="text-right pull-right"><input type="checkbox" name="wojewodztwo" data-size="mini" data-label-text="<span class=''></span>" data-on-text="<span class='glyphicon glyphicon-ok'></span>" data-off-text="<span class='glyphicon glyphicon-remove'></span>"></div>
+                      </div>
+                       <div class="panel-body">
+                        Świętokrzyskie
+                        <div class="text-right pull-right"><input type="checkbox" name="wojewodztwo" data-size="mini" data-label-text="<span class=''></span>" data-on-text="<span class='glyphicon glyphicon-ok'></span>" data-off-text="<span class='glyphicon glyphicon-remove'></span>"></div>
+                      </div>
+                      <div class="panel-body">
+                        Warmińsko-mazurskie
+                        <div class="text-right pull-right"><input type="checkbox" name="wojewodztwo" data-size="mini" data-label-text="<span class=''></span>" data-on-text="<span class='glyphicon glyphicon-ok'></span>" data-off-text="<span class='glyphicon glyphicon-remove'></span>"></div>
+                      </div>
+                      <div class="panel-body">
+                        Wielkopolskie
+                        <div class="text-right pull-right"><input type="checkbox" name="wojewodztwo" data-size="mini" data-label-text="<span class=''></span>" data-on-text="<span class='glyphicon glyphicon-ok'></span>" data-off-text="<span class='glyphicon glyphicon-remove'></span>"></div>
+                      </div>
+                      <div class="panel-body">
+                        Zachodniopomorskie
+                        <div class="text-right pull-right"><input type="checkbox" name="wojewodztwo" data-size="mini" data-label-text="<span class=''></span>" data-on-text="<span class='glyphicon glyphicon-ok'></span>" data-off-text="<span class='glyphicon glyphicon-remove'></span>"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel panel-default pasek-out">
+                    <div class="pasek pull-left">
+                    </div>
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapseFour">
+                          Cena
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse">
+                      <div class="panel-body">
+                        <div class="input-group input-group-sm">
+                          <span class="input-group-addon">Od</span>
+                          <input type="text" class="form-control" placeholder="Np. 10000">
+                          <span class="input-group-addon"> zł</span>
+                        </div>
+                      </div>
+                      <div class="panel-body">
+                        <div class="input-group input-group-sm">
+                          <span class="input-group-addon">Do</span>
+                          <input type="text" class="form-control" placeholder="Np. 10000">
+                          <span class="input-group-addon"> zł</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel panel-default pasek-out">
+                    <div class="pasek pull-left">
+                    </div>
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapseSeven">
+                          Powierzchnia
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseSeven" class="panel-collapse collapse">
+                      <div class="panel-body">
+                        <div class="input-group input-group-sm">
+                          <span class="input-group-addon">Od</span>
+                          <input type="text" class="form-control" placeholder="Np. 50">
+                          <span class="input-group-addon"> m<sup>2</sup></span>
+                        </div>
+                      </div>
+                      <div class="panel-body">
+                        <div class="input-group input-group-sm">
+                          <span class="input-group-addon">Do</span>
+                          <input type="text" class="form-control" placeholder="Np. 100">
+                          <span class="input-group-addon"> m<sup>2</sup></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel panel-default pasek-out">
+                    <div class="pasek pull-left">
+                    </div>
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapseEight">
+                          Działka
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseEight" class="panel-collapse collapse">
+                      <div class="panel-body">
+                        <div class="input-group input-group-sm">
+                          <span class="input-group-addon">Od</span>
+                          <input type="text" class="form-control" placeholder="Np. 150">
+                          <span class="input-group-addon"> m<sup>2</sup></span>
+                        </div>
+                      </div>
+                      <div class="panel-body">
+                        <div class="input-group input-group-sm">
+                          <span class="input-group-addon">Do</span>
+                          <input type="text" class="form-control" placeholder="Np. 300">
+                          <span class="input-group-addon"> m<sup>2</sup></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel panel-default pasek-out">
+                    <div class="pasek pull-left">
+                    </div>
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapseNine">
+                          Liczba pokoi
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseNine" class="panel-collapse collapse">
+                      <div class="panel-body">
+                        <div class="input-group input-group-sm">
+                          <span class="input-group-addon">Od</span>
+                          <input type="text" class="form-control" placeholder="Np. 2">
+                        </div>
+                      </div>
+                      <div class="panel-body">
+                        <div class="input-group input-group-sm">
+                          <span class="input-group-addon">Do</span>
+                          <input type="text" class="form-control" placeholder="Np. 6">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel panel-default pasek-out">
+                    <div class="pasek pull-left">
+                    </div>
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapseTen">
+                          Piętro
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseTen" class="panel-collapse collapse">
+                      <div class="panel-body">
+                        <div class="input-group input-group-sm">
+                          <span class="input-group-addon">Od</span>
+                          <input type="text" class="form-control" placeholder="Np. 1">
+                        </div>
+                      </div>
+                      <div class="panel-body">
+                        <div class="input-group input-group-sm">
+                          <span class="input-group-addon">Do</span>
+                          <input type="text" class="form-control" placeholder="Np. 3">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel panel-default pasek-out">
+                    <div class="pasek pull-left">
+                    </div>
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapseEleven">
+                          Kondygnacje
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseEleven" class="panel-collapse collapse">
+                      <div class="panel-body">
+                        <div class="input-group input-group-sm">
+                          <span class="input-group-addon">Od</span>
+                          <input type="text" class="form-control" placeholder="Np. 2">
+                        </div>
+                      </div>
+                      <div class="panel-body">
+                        <div class="input-group input-group-sm">
+                          <span class="input-group-addon">Do</span>
+                          <input type="text" class="form-control" placeholder="Np. 4">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel-body">
+                        <div class="input-group input-group-sm">
+                          <span class="input-group-addon">Miejscowość</span>
+                          <input type="text" class="form-control" placeholder="Np. Poznań">
+                        </div>
+                  </div>
+                  <div class="panel-body">
+                        <div class="input-group input-group-sm">
+                          <span class="input-group-addon">Dzielnica</span>
+                          <input type="text" class="form-control" placeholder="Np. Piątkowo">
+                        </div>
+                  </div>
+                  <div class="panel-body">
+                        <div class="input-group input-group-sm">
+                          <span class="input-group-addon">Rok budowy</span>
+                          <input type="text" class="form-control" placeholder="Np. 1994">
+                        </div>
+                  </div>
+                  <div class="panel-body">
+                        <div class="input-group input-group-sm">
+                          <span class="input-group-addon">Słowo kluczowe</span>
+                          <input type="text" class="form-control" placeholder="Np. Poziomkowa 16">
+                        </div>
+                  </div>
+                  <div class="panel-body">
+                        <div class="input-group input-group-sm">
+                          <span class="input-group-addon">Nr oferty</span>
+                          <input type="text" class="form-control" placeholder="Np. 56/566">
+                        </div>
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-9 col-lg-9">
+              <div class="row-fluid">
+                <div class="row">
+                  <div class="col-sm-4 col-md-4 col-lg-4 col-xs-12">
+                    <div class="thumbnail">
+                      <img data-src="holder.js/300x200/auto/#777:#777" class="visible-xs" alt="...">
+                      <div id="carousel-oferta1" class="carousel slide hidden-xs" data-interval="false" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                          <li data-target="#carousel-oferta1" data-slide-to="0" class="active"></li>
+                          <li data-target="#carousel-oferta1" data-slide-to="1" class=""></li>
+                          <li data-target="#carousel-oferta1" data-slide-to="2" class=""></li>
+                        </ol>
+                        <div class="carousel-inner">
+                          <div class="item active">
+                            <img data-src="holder.js/300x200/auto/#777:#777" alt="...">
+                          </div>
+                          <div class="item">
+                            <img data-src="holder.js/300x200/auto/#888:#888" alt="...">
+                          </div>
+                          <div class="item">
+                            <img data-src="holder.js/300x200/auto/#999:#999" alt="...">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="caption">
+                        <h4>Dom wolnostojący</h4>
+                        <p>
+                          <span class="label label-success">200 m<sup>2</sup></span>
+                          <span class="label label-success">205 000 zł</span>
+                          <span class="label label-success">Murowana Goślina</span>
+                        </p>
+                        <p><a href="#" class="btn btn-primary" role="button">Zobacz</a> <a href="#" class="btn btn-default" role="button">Obserwuj</a></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4 col-md-4 col-lg-4 col-xs-12">
+                    <div class="thumbnail">
+                      <img data-src="holder.js/300x200/auto/#777:#777" alt="...">
+                      <div class="caption">
+                        <h3>Thumbnail label</h3>
+                        <p>...</p>
+                        <p><a href="#" class="btn btn-primary" role="button">Zobacz</a> <a href="#" class="btn btn-default" role="button">Obserwuj</a></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4 col-md-4 col-lg-4 col-xs-12">
+                    <div class="thumbnail">
+                      <img data-src="holder.js/300x200/auto/#888:#888" alt="...">
+                      <div class="caption">
+                        <h3>Thumbnail label</h3>
+                        <p>...</p>
+                        <p><a href="#" class="btn btn-primary" role="button">Zobacz</a> <a href="#" class="btn btn-default" role="button">Obserwuj</a></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row-fluid">
+                <div class="row">
+                  <div class="col-sm-4 col-md-4 col-lg-4 col-xs-12">
+                    <div class="thumbnail">
+                      <img data-src="holder.js/300x200/auto/#999:#999" alt="...">
+                      <div class="caption">
+                        <h3>Thumbnail label</h3>
+                        <p>...</p>
+                        <p><a href="#" class="btn btn-primary" role="button">Zobacz</a> <a href="#" class="btn btn-default" role="button">Obserwuj</a></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4 col-md-4 col-lg-4 col-xs-12">
+                    <div class="thumbnail">
+                      <img data-src="holder.js/300x200" alt="...">
+                      <div class="caption">
+                        <h3>Thumbnail label</h3>
+                        <p>...</p>
+                        <p><a href="#" class="btn btn-primary" role="button">Zobacz</a> <a href="#" class="btn btn-default" role="button">Obserwuj</a></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4 col-md-4 col-lg-4 col-xs-12">
+                    <div class="thumbnail">
+                      <img data-src="holder.js/300x200" alt="...">
+                      <div class="caption">
+                        <h3>Thumbnail label</h3>
+                        <p>...</p>
+                        <p><a href="#" class="btn btn-primary" role="button">Zobacz</a> <a href="#" class="btn btn-default" role="button">Obserwuj</a></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row-fluid">
+                <div class="row">
+                  <div class="col-sm-4 col-md-4 col-lg-4 col-xs-12">
+                    <div class="thumbnail">
+                      <img data-src="holder.js/300x200" alt="...">
+                      <div class="caption">
+                        <h3>Thumbnail label</h3>
+                        <p>...</p>
+                        <p><a href="#" class="btn btn-primary" role="button">Zobacz</a> <a href="#" class="btn btn-default" role="button">Obserwuj</a></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4 col-md-4 col-lg-4 col-xs-12">
+                    <div class="thumbnail">
+                      <img data-src="holder.js/300x200" alt="...">
+                      <div class="caption">
+                        <h3>Thumbnail label</h3>
+                        <p>...</p>
+                        <p><a href="#" class="btn btn-primary" role="button">Zobacz</a> <a href="#" class="btn btn-default" role="button">Obserwuj</a></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4 col-md-4 col-lg-4 col-xs-12">
+                    <div class="thumbnail">
+                      <img data-src="holder.js/300x200" alt="...">
+                      <div class="caption">
+                        <h3>Thumbnail label</h3>
+                        <p>...</p>
+                        <p><a href="#" class="btn btn-primary" role="button">Zobacz</a> <a href="#" class="btn btn-default" role="button">Obserwuj</a></p>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="row-fluid">
+        <div class="row">
+          <div class="col-sm-8 col-md-8 col-lg-8 col-sm-offset-4 col-md-offset-4  col-lg-offset-4">
+            <ul class="pagination">
+                <li class="disabled"><span>&laquo;</span></li>
+                <li class="active"><span>1 <span class="sr-only">(current)</span></span></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">&raquo;</a></li>
+              </ul>
+          </div>
+        </div>
+    </div>
+    <footer>
+        <p class="pull-right"><a href="#">Do góry</a></p>
+        <p>© 2014 Rafał Wojciechowicz · <a href="#">Kontakt</a> · <a href="#">Warunki użytkowania</a></p>
+    </footer>
+</div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery-1.11.0.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-switch.js"></script>
+    <script src="js/holder.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script>
+    $(function() {
+        $("[name='wojewodztwo']").bootstrapSwitch();
+    });
+    </script>
+    <script>
+    ////////////////////////
+    //NIEBIESKI PASEK PIONOWY - ANIMACJA
+    ////////////////////////
+    $(function() {
+          $( ".pasek-out .panel-heading" ).click(function() {
+            if($( this ).parent().find(".panel-collapse").attr("class").indexOf("in")==-1) {
+              $( this ).find(".pasek").stop().animate({width: "20px"}, 500);
+            }
+            else {
+              $( this ).find(".pasek").stop().animate({width: "4px"}, 500);
+            }
+          /*.mouseout(function() {
+            $( this ).find(".pasek").animate({width: "12px"}, 500);
+          });*/
+          })
+          $( ".pasek-out" ).mouseout(function() {
+            if($( this ).find(".panel-collapse").attr("class").indexOf("in")==-1) {
+              $( this ).find(".pasek").stop().animate({width: "4px"}, 500);
+            }
+          })
+          $( ".pasek-out" ).mouseover(function() {
+            $( this ).find(".pasek").stop().animate({width: "20px"}, 500);
+          })
+    });
+    //////////>>>>>>
+    //////////>>>>>>
+    //////////>>>>>>
+    </script>
+    <script>
+    ////////////////////////
+    //PIONOWE MENU - KIEDY FIXED
+    ////////////////////////
+    $(function() {
+        $('#menu-gora').affix({
+        offset: {
+          top: function () {
+            return (this.top = $('.masthead img').height());
+          }
+        }
+      })
+    });
+    //////////>>>>>>
+    //////////>>>>>>
+    //////////>>>>>>
+    </script>
+    <script>
+    ////////////////////////
+    //PASEK KTÓRY PRZESKAKUJE W MENU POZIOMYM
+    ////////////////////////
+$(function() {
+
+    var $el, leftPos, newWidth;
+    
+    /*
+        EXAMPLE ONE
+    */
+    
+    /* Add Magic Line markup via JavaScript, because it ain't gonna work without */
+    $("#magic-line-box").append("<li id='magic-line'></li>");
+    
+    /* Cache it */
+    var $magicLine = $("#magic-line");
+    
+    $magicLine
+        .width($("#magic-line-box li.active.line").width())
+        .css("left", $("#magic-line-box li.active.line a.line-link").position().left)
+        .data("origLeft", $magicLine.position().left)
+        .css("top", $("#magic-line-box li.active.line a.line-link").position().top)
+        .data("origTop", $magicLine.position().top)
+        .data("origWidth", $magicLine.width());
+        
+    $("#magic-line-box li.line a.line-link").hover(function() {
+        $el = $(this);
+        var childPos = $el.offset();
+        var parentPos = $el.parent().parent().offset();
+        leftPos = childPos.left - parentPos.left;
+        topPos = childPos.top - parentPos.top;
+        /*alert("childPos: "+childPos.left+" - parentPos: "+parentPos.left);*/
+        newWidth = $el.width()+30;
+        
+        $magicLine.stop().animate({
+            left: leftPos,
+            top: topPos,
+            width: newWidth
+        });
+    }, function() {
+        $magicLine.stop().animate({
+            left: $magicLine.data("origLeft"),
+            top: $magicLine.data("origTop"),
+            width: $magicLine.data("origWidth")
+        });    
+    });
+});
+    //////////>>>>>>
+    //////////>>>>>>
+    //////////>>>>>>
+    </script>
+  </body>
+</html>

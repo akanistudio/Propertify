@@ -1,0 +1,75 @@
+.masthead {
+    text-align: center;
+    width:100%;
+    background-color: #333333;
+ }
+/*.masthead .img-responsive {
+    margin: 0 auto;
+}*/
+#menu-gora {
+    width: 100%;
+    border-width: 1px 0px 2px 0px;
+    border-radius: 0px;
+    z-index: 100;
+}
+#menu-gora.affix {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+}
+#carousel-naglowek .carousel-inner .item img {
+    margin: 0 auto;
+}
+.magic-line { 
+    background-color:#45b0ee;
+}
+#magic-line-box {
+    position: relative;
+}
+#magic-line { position: absolute; top: 0px; left: 0; width: 100px; height: 2px; background: #428bca; }
+a.panel-heading {
+    display: inline-block;
+}
+#wyszukiwarka-box .panel-default {
+    border-left: 0px;
+    border-radius: 0px;
+}
+#wyszukiwarka-box .panel-primary {
+    border-radius: 0px;
+    border: 0px;
+}
+#wyszukiwarka-box .panel-primary  .panel-heading {
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+/*#szukane, #szukane .panel-heading { 
+    border-left: 1px;
+}*/
+.panel-group .panel+.panel {
+    margin-top: 0px;
+    border-top: 0px;
+}
+.panel-heading {
+    padding-left: 40px;
+}
+.thumbnail {
+}
+.panel-body {
+    padding: 10px 15px;
+}
+.panel {
+    position: relative;
+}
+.pasek {
+    position: absolute;
+    width: 4px;
+    height: 38px;
+    background-color: #47a447;
+}
+@media (min-width: 992px) {
+  #wyszukiwarka {
+        min-height: 790px;
+    }
+}
