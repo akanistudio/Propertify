@@ -575,23 +575,21 @@
     ////////////////////////
     $(function() {
           $( ".pasek-out .panel-heading" ).click(function() {
-            if($( this ).parent().find(".panel-collapse").attr("class").indexOf("in")==-1) {
-              $( this ).find(".pasek").stop().animate({width: "20px"}, 500);
+            if($( this ).parent().find(".panel-collapse").hasClass( "collapsing" )) {
+              $( this ).find(".pasek").stop().animate({width: "20px"}, 300);
             }
-            else {
-              $( this ).find(".pasek").stop().animate({width: "4px"}, 500);
+            if($( this ).parent().find(".panel-collapse").hasClass( "in" ))  {
+              $( this ).find(".pasek").stop().animate({width: "4px"}, 300);
             }
-          /*.mouseout(function() {
-            $( this ).find(".pasek").animate({width: "12px"}, 500);
-          });*/
           })
           $( ".pasek-out" ).mouseout(function() {
-            if($( this ).find(".panel-collapse").attr("class").indexOf("in")==-1) {
-              $( this ).find(".pasek").stop().animate({width: "4px"}, 500);
+            if(!$( this ).find(".panel-collapse").hasClass( "in" ) )
+            {
+              $( this ).find(".pasek").stop().animate({width: "4px"}, 300);
             }
           })
           $( ".pasek-out" ).mouseover(function() {
-            $( this ).find(".pasek").stop().animate({width: "20px"}, 500);
+            $( this ).find(".pasek").stop().animate({width: "20px"}, 300);
           })
     });
     //////////>>>>>>
