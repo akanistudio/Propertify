@@ -2,7 +2,7 @@
 
 My first, simple, bootstrap theme. Do whatever you want with that, its for free.
 
-### How do I get set up? ###
+### How do I set it up? ###
 
 
 ```
